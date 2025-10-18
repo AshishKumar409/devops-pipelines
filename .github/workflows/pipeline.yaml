@@ -1,0 +1,18 @@
+name: Node.js CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # 1. Get code
+      - name: Use Node.js 18        # 2. Choose Node version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm install            # 3. Install packages
+      - run: npm test               # 4. Run tests
